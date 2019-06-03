@@ -8,6 +8,6 @@ RUN urpmi curl
 RUN curl http://download.opensuse.org/repositories/science:/openturns/Mageia_6/science:openturns.repo -o /etc/yum.repos.d/obs-openturns.repo
 RUN rpm --import http://download.opensuse.org/repositories/science:/openturns/Mageia_6/repodata/repomd.xml.key
 RUN dnf makecache
-RUN dnf install python-openturns
+RUN dnf install -y python-openturns
 
 RUN curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.12/python/test/t_features.py && python ./t_features.py
