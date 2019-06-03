@@ -3,6 +3,6 @@
 
 ===================
 Test Linux packages
-==================
+===================
 
 Script to test Linux packages
