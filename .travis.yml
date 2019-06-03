@@ -5,4 +5,4 @@ services:
   - docker
 
 script:
-  - ./test_pkg.sh
+  - ./test-pkg.sh
