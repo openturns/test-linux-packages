@@ -4,8 +4,4 @@ RUN curl -sSL http://download.opensuse.org/repositories/science:/openturns/Fedor
 RUN rpm --import http://download.opensuse.org/repositories/science:/openturns/Fedora_30/repodata/repomd.xml.key
 RUN yum install -y python-openturns
 
-WORKDIR /tmp
-RUN useradd devel
-USER devel
-
-RUN curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.12/python/test/t_features.py && python ./t_features.py
+RUN curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.13rc1/python/test/t_features.py && python ./t_features.py
