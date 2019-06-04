@@ -1,6 +1,5 @@
 
 FROM ubuntu:bionic
-MAINTAINER jschueller
 
 RUN apt-get -y update
 RUN echo "Europe/Dublin" > /etc/timezone

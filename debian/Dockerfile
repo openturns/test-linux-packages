@@ -1,6 +1,5 @@
 
-FROM debian:stretch 
-MAINTAINER jschueller
+FROM debian:stretch
 
 RUN apt-get -y update
 RUN echo "Europe/Dublin" > /etc/timezone
