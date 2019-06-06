@@ -5,4 +5,4 @@
 Test Linux packages
 ===================
 
-Script to test Linux packages
+Script to test Linux packages (Debian & RPM)
