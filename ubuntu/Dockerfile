@@ -12,4 +12,3 @@ RUN echo deb http://ubuntu.openturns.org bionic main | tee /etc/apt/sources.list
 RUN apt-get -y  update
 RUN apt-get -y install python3-openturns python-openturns libopenturns-dev
 
-RUN curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.13rc1/python/test/t_features.py && python3 ./t_features.py && python2 ./t_features.py

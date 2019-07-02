@@ -7,5 +7,4 @@ RUN zypper --gpg-auto-import-keys ref
 
 RUN zypper -n install curl python-openturns
 
-RUN curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.13rc1/python/test/t_features.py && python ./t_features.py
 

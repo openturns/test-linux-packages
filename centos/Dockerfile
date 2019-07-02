@@ -4,4 +4,3 @@ RUN curl -sSL http://download.opensuse.org/repositories/science:/openturns/CentO
 RUN rpm --import http://download.opensuse.org/repositories/science:/openturns/CentOS_7/repodata/repomd.xml.key
 RUN yum install -y python-openturns
 
-RUN curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.13rc1/python/test/t_features.py && python ./t_features.py

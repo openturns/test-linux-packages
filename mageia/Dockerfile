@@ -10,4 +10,3 @@ RUN rpm --import http://download.opensuse.org/repositories/science:/openturns/Ma
 RUN dnf makecache
 RUN dnf install -y python-openturns
 
-RUN curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.13rc1/python/test/t_features.py && python ./t_features.py
