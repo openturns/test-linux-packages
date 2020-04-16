@@ -5,6 +5,6 @@ RUN zypper -n ar -cfp 90 http://download.opensuse.org/repositories/science:/open
 RUN zypper -n ar -cfp 90 http://download.opensuse.org/repositories/science/openSUSE_Leap_15.1/science.repo
 RUN zypper --gpg-auto-import-keys ref
 
-RUN zypper -n install curl python-openturns
+RUN zypper -n install curl python3-openturns
 
 
