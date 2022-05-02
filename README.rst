@@ -1,5 +1,5 @@
-.. image:: https://travis-ci.org/openturns/test-linux-packages.svg?branch=master
-    :target: https://travis-ci.org/openturns/test-linux-packages
+.. image:: https://github.com/openturns/test-linux-packages/actions/workflows/build.yml/badge.svg?branch=master
+    :target: https://github.com/openturns/test-linux-packages/actions/workflows/build.yml
 
 ===================
 Test Linux packages
