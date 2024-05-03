@@ -2,8 +2,8 @@
 
 set -e
 
-for image in ubuntu debian centos fedora opensuse
+for image in mageia centos fedora opensuse ubuntu debian
 do
   docker build ${image} -t ${image}
-  docker run ${image} sh -c "curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.20/python/test/t_features.py && python3 ./t_features.py"
+  docker run ${image} sh -c "curl -fsSLO https://raw.githubusercontent.com/openturns/openturns/v1.23rc1/python/test/t_PlatformInfo_std.py && python3 ./t_PlatformInfo_std.py"
 done
