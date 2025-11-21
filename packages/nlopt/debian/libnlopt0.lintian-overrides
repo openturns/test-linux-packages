@@ -1,0 +1,9 @@
+# See http://lists.debian.org/debian-devel/2012/05/msg00852.html
+libnlopt0: hardening-no-stackprotector usr/lib/*/libnlopt.so.*
+
+# To be discussed with upstream.
+#
+# For 2.4, grep exit shows, that problem is in
+# direct/direct-internal.h: ASRT macro, used in ./direct/DIRsubrout.c;
+# stogo/local.cc and stogo/tools.cc sources.
+libnlopt0: shlib-calls-exit usr/lib/*/libnlopt.so.*

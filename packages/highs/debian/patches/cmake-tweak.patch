@@ -1,0 +1,59 @@
+Description: CMake-related tweaks
+ Remove RPATH
+Author: Shengqi Chen <harry@debian.org>
+Forwarded: not-needed
+Last-Update: 2025-01-08
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -50,9 +50,6 @@
+     set(CONF_DEPENDENCIES "include(CMakeFindDependencyMacro)\nfind_dependency(ZLIB)")
+   endif()
+ 
+-  # set the install rpath to the installed destination
+-  set_target_properties(libhighs PROPERTIES INSTALL_RPATH
+-    "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+ 
+   # install the header files of highs
+   foreach(file ${headers})
+@@ -142,11 +139,6 @@
+ 
+   set_target_properties(highs PROPERTIES POSITION_INDEPENDENT_CODE ON)
+ 
+-  if(APPLE)
+-      set_target_properties(highs PROPERTIES INSTALL_RPATH "@loader_path")
+-  elseif (UNIX)
+-      set_target_properties(highs PROPERTIES INSTALL_RPATH "$ORIGIN")
+-  endif()
+ 
+   target_include_directories(highs PUBLIC
+     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -72,10 +72,6 @@
+ 
+ option(PYTHON_BUILD_SETUP "Build Python interface from setup.py" OFF)
+ message(STATUS "Build Python: ${PYTHON_BUILD_SETUP}")
+-if (PYTHON_BUILD_SETUP)
+-  set(BUILD_CXX OFF)
+-  set(BUILD_TESTING OFF)
+-endif()
+ 
+ include(CMakeDependentOption)
+ 
+--- a/cmake/python-highs.cmake
++++ b/cmake/python-highs.cmake
+@@ -40,10 +40,10 @@
+ # add module
+ # pybind11_add_module(highspy highspy/highs_bindings.cpp)
+ 
+-target_link_libraries(_core PRIVATE pybind11::headers)
++target_link_libraries(_core PRIVATE pybind11::headers highs)
+ 
+ # sources for python 
+-target_sources(_core PUBLIC ${sources_python} ${headers_python})
++target_sources(_core PUBLIC ${headers_python})
+ 
+ # include directories for python 
+ target_include_directories(_core PUBLIC ${include_dirs_python})

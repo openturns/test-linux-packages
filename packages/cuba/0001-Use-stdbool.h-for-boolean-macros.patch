@@ -1,0 +1,32 @@
+From a23196baa972e2a87b474a2b352fa2ededeede33 Mon Sep 17 00:00:00 2001
+From: Julien Schueller <schueller@phimeca.com>
+Date: Sun, 27 Apr 2025 12:54:19 +0200
+Subject: [PATCH] Use stdbool.h for boolean macros
+
+---
+ src/common/stddecl.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/common/stddecl.h b/src/common/stddecl.h
+index e74d351..2d0f624 100644
+--- a/src/common/stddecl.h
++++ b/src/common/stddecl.h
+@@ -44,6 +44,7 @@
+ #include <sys/shm.h>
+ #endif
+ #endif
++#include <stdbool.h>
+ 
+ #ifdef HAVE_ALLOCA_H
+ #include <alloca.h>
+@@ -352,7 +353,6 @@ if( fail == 0 && (t)->statefile && KEEPFILE == 0 ) unlink((t)->statefile)
+ #define Extern extern "C"
+ #else
+ #define Extern extern
+-typedef enum { false, true } bool;
+ #endif
+ 
+ typedef const char cchar;
+-- 
+2.49.0
+

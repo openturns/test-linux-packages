@@ -1,0 +1,2 @@
+Tests: runExamples
+Depends: @, build-essential

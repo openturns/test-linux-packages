@@ -1,0 +1,3 @@
+# it's ok for plugin:
+libnlopt-guile0: non-dev-pkg-with-shlib-symlink usr/lib/*/libnlopt_guile.so.* usr/lib/*/libnlopt_guile.so
+libnlopt-guile0: no-symbols-control-file usr/lib/*/libnlopt_guile.so.*

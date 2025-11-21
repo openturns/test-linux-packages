@@ -1,0 +1,3 @@
+usr/lib/*/libmixmod*.so
+usr/include/mixmod.h
+usr/include/mixmod/*

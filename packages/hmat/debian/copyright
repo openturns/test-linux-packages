@@ -1,0 +1,34 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: hmat-oss
+Upstream-Contact: Jerome Robert <jeromerobert@users.sf.net>
+Source: https://github.com/jeromerobert/hmat-oss/archive/
+
+Files: *
+Copyright: 2014-2016 Airbus Group SAS 
+License: GPL-2+
+
+Files: src/cluster_assembly_function.cpp
+       src/cluster_assembly_function.hpp
+       src/engine_settings.hpp
+       src/iengine.hpp
+Copyright: 2019 Airbus S.A.S.
+License: GPL-2+
+
+Files: src/json.cpp
+       src/json.hpp
+Copyright: 2014-2017 Airbus SAS
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2014 Julien Schueller
+           2022 Pierre Gruet <pgt@debian.org>
+License: GPL-2+
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ On Debian systems, the full text of the GNU General Public License
+ version 2 can be found in the file `/usr/share/common-licenses/GPL-2'.

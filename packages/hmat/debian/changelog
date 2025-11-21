@@ -1,0 +1,86 @@
+hmat-oss (1.9.0-1) unstable; urgency=low
+
+  * New release
+
+ -- Julien Schueller <schueller@phimeca.com>  Wed, 15 Nov 2023 10:39:33 +0100
+
+hmat-oss (1.8.1-1) unstable; urgency=low
+
+  * New release
+
+ -- Julien Schueller <schueller@phimeca.com>  Sat, 05 Nov 2022 21:39:33 +0100
+
+hmat-oss (1.7.1-1) experimental; urgency=medium
+
+  * New upstream version 1.7.1
+  * Depending on debhelper-compat 13
+  * Correcting d/watch, and upgrading it to version 4
+  * Performing a SONAME bump, due to non backward-compatible ABI changes
+  * Providing descriptions of packages with a bit more details
+  * Adding myself as uploader
+  * Simplifying debian/gbp.conf
+  * Raising Standards version to 4.6.0:
+    - Providing https Salsa links in Vcs-* fields
+    - Extra priority is now optional
+    - Using https form of format URL in d/copyright
+    - Rules-Requires-Root: no
+    - Dropping old-fashioned -dbg package
+  * Removing all upstreamed patches
+  * Removing build-dependency on quilt
+  * Removing useless dependencies of the -dev package
+  * Reworking d/rules:
+    - Lighter override of dh_auto_configure
+    - No tweaking of DEB_BUILD_OPTIONS
+    - Hardening using /usr/share/dpkg/buildflags.mk
+  * Refreshing d/copyright
+  * Installing the library in /usr/lib/triplet
+  * Correcting a spelling error in the source
+  * Adding a Lintian override for not providing a symbols file
+  * Adding an autopkgtest and providing it as example in the -dev package
+  * Trim trailing whitespace.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+ -- Pierre Gruet <pgt@debian.org>  Sat, 02 Apr 2022 20:44:55 +0200
+
+hmat-oss (1.2.0-2.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Backport upstream fix for FTBFS with glibc 2.33. (Closes: #1002167)
+
+ -- Adrian Bunk <bunk@debian.org>  Wed, 19 Jan 2022 18:14:34 +0200
+
+hmat-oss (1.2.0-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix FTBFS. (Closes: #897768)
+
+ -- Sudip Mukherjee <sudipm.mukherjee@gmail.com>  Sat, 02 May 2020 00:18:14 +0100
+
+hmat-oss (1.2.0-2) unstable; urgency=medium
+
+  * New patch: 0002-Fix-compilation-on-Linux-32-bits-systems.patch
+    Fix compilation on 32bit systems, thanks Jérôme Robert.
+
+ -- Denis Barbier <barbier@debian.org>  Thu, 20 Oct 2016 21:08:08 +0100
+
+hmat-oss (1.2.0-1) unstable; urgency=low
+
+  * New upstream version
+  * This version builds with gcc 6.  (Closes: #831143)
+  * New patch: 0001-make-build-reproducible.patch
+    Makes builds reproducible.
+
+ -- Denis Barbier <barbier@debian.org>  Wed, 19 Oct 2016 21:20:33 +0100
+
+hmat-oss (1.0.4-2) unstable; urgency=low
+
+  * Upload to unstable (Closes: #775738)
+
+ -- Denis Barbier <barbier@debian.org>  Sun, 25 Jan 2015 11:22:12 +0000
+
+hmat-oss (1.0.4-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Julien Schueller <schueller@phimeca.com>  Sat, 22 Nov 2014 21:39:33 +0100

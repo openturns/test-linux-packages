@@ -1,0 +1,50 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 321c6d6..ea54149 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -18,7 +18,7 @@
+ #
+ #  http://github.com/jeromerobert/hmat-oss
+ 
+-cmake_minimum_required(VERSION 3.13)
++cmake_minimum_required(VERSION 3.10)
+ 
+ # Set CMAKE_BUILD_TYPE to Release by default.
+ # Must be done before calling project()
+@@ -76,10 +76,6 @@ endforeach()
+ # Declare target
+ # ========================
+ 
+-if(NOT TARGET hmat)
+-    add_library(hmat)
+-endif()
+-
+ # Options which modify the list of source files
+ option(HMAT_TIMELINE "Enable profiling timeline" OFF)
+ 
+@@ -90,7 +86,7 @@ if(NOT HMAT_TIMELINE)
+     list(REMOVE_ITEM HMAT_SOURCES src/common/timeline.cpp)
+ endif()
+ 
+-target_sources(hmat PRIVATE ${HMAT_SOURCES})
++add_library(hmat ${HMAT_SOURCES})
+ 
+ if(BUILD_SHARED_LIBS)
+     set_target_properties(hmat PROPERTIES DEFINE_SYMBOL HMAT_DLL_EXPORTS)
+@@ -245,7 +241,7 @@ endif()
+ target_include_directories(hmat PRIVATE ${CBLAS_INCLUDE_DIR})
+ 
+ if(BUILD_SHARED_LIBS)
+-    target_link_options(hmat PRIVATE "${BLAS_LINKER_FLAGS}")
++	#target_link_options(hmat PRIVATE "${BLAS_LINKER_FLAGS}")
+ else()
+     set_target_properties(hmat PROPERTIES STATIC_LIBRARY_OPTIONS "${BLAS_LINKER_FLAGS}")
+ endif()
+@@ -421,7 +417,6 @@ install(TARGETS hmat
+             COMPONENT HMAT_Runtime
+         LIBRARY
+             DESTINATION "${HMAT_RELATIVE_INSTALL_LIB_DIR}"
+-            NAMELINK_COMPONENT HMAT_Development
+             COMPONENT HMAT_Runtime
+         ARCHIVE
+             DESTINATION "${HMAT_RELATIVE_INSTALL_LIB_DIR}"

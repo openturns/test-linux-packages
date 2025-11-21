@@ -1,0 +1,148 @@
+Description: Fix build issues due to removal of vendored catch2.hpp
+Author: Shengqi Chen <harry@debian.org>
+Forwarded: not-needed
+Last-Update: 2025-03-16
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- /dev/null
++++ b/check/catch.hpp
+@@ -0,0 +1,6 @@
++// debian fix for this project using obsolete "catch2.hpp"
++
++#ifndef _DEBIAN_CATCH2_HPP
++#define _DEBIAN_CATCH2_HPP
++#include <catch2/catch_test_macros.hpp>
++#endif
+--- a/check/CMakeLists.txt
++++ b/check/CMakeLists.txt
+@@ -28,9 +28,9 @@
+ 
+ if ((NOT FAST_BUILD OR ALL_TESTS) AND NOT (BUILD_EXTRA_UNIT_ONLY))
+   # prepare Catch library
+-  set(CATCH_INCLUDE_DIR ${HIGHS_SOURCE_DIR}/extern)
+-  add_library(Catch INTERFACE)
+-  target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
++  find_package(Catch2 3 REQUIRED)
++  include(CTest)
++  include(Catch)
+ 
+   configure_file(${HIGHS_SOURCE_DIR}/check/HCheckConfig.h.in ${HIGHS_BINARY_DIR}/HCheckConfig.h)
+ 
+@@ -103,6 +103,7 @@
+     endif()
+ 
+   add_executable(unit_tests ${TEST_SOURCES})
++  target_include_directories(unit_tests PRIVATE ${HIGHS_SOURCE_DIR}/extern)
+ 
+   if (UNIX)
+       target_compile_options(unit_tests PRIVATE "-Wno-unused-variable")
+@@ -110,7 +111,7 @@
+   endif()
+ 
+   if (FAST_BUILD)
+-    target_link_libraries(unit_tests highs Catch)
++    target_link_libraries(unit_tests highs Catch2::Catch2WithMain)
+ 
+     if (CUPDLP_GPU)
+         if (WIN32)
+@@ -122,7 +123,7 @@
+         set_target_properties(unit_tests PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+     endif()
+   else()
+-    target_link_libraries(unit_tests libhighs Catch)
++    target_link_libraries(unit_tests libhighs Catch2::Catch2WithMain)
+   endif()
+ 
+   include(GNUInstallDirs)
+@@ -151,24 +152,7 @@
+ 
+   # Check whether test executable builds OK.
+   if (NOT HIGHS_COVERAGE)
+-    add_test(NAME unit-test-build
+-            COMMAND ${CMAKE_COMMAND}
+-                    --build ${HIGHS_BINARY_DIR}
+-                    --target unit_tests
+-                    #  --config ${CMAKE_BUILD_TYPE}
+-            )
+-
+-    # Avoid that several build jobs try to concurretly build.
+-    set_tests_properties(unit-test-build
+-                        PROPERTIES
+-                        RESOURCE_LOCK unittestbin)
+-
+-    # create a binary running all the tests in the executable
+-    add_test(NAME unit_tests_all COMMAND unit_tests --success)
+-    set_tests_properties(unit_tests_all
+-                        PROPERTIES
+-                        DEPENDS unit-test-build)
+-    set_tests_properties(unit_tests_all PROPERTIES TIMEOUT 10000) 
++    catch_discover_tests(unit_tests)
+   else()
+     add_test(NAME unit_tests_all COMMAND unit_tests --success)
+     set_tests_properties(unit_tests_all PROPERTIES TIMEOUT 10000) 
+@@ -495,11 +479,9 @@
+ endif()
+ 
+ if (BUILD_EXTRA_UNIT_TESTS AND BUILD_EXTRA_UNIT_ONLY)
+-    # prepare Catch library
+-    set(CATCH_INCLUDE_DIR ${HIGHS_SOURCE_DIR}/extern)
+-    add_library(Catch INTERFACE)
+-    target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
+-
++    find_package(Catch2 3 REQUIRED)
++    include(CTest)
++    include(Catch)
+ 
+     list(APPEND CMAKE_MODULE_PATH "${HIGHS_SOURCE_DIR}/check/highs-unit-tests")
+     message(STATUS "${HIGHS_SOURCE_DIR}/check/highs-unit-tests")
+@@ -509,31 +491,15 @@
+     message(STATUS ${TEST_SOURCES})
+ 
+     add_executable(unit_tests_extra ${TEST_SOURCES})
+-    target_link_libraries(unit_tests_extra Catch)
++    target_link_libraries(unit_tests_extra Catch2::Catch2WithMain)
++    target_include_directories(unit_tests_extra PRIVATE ${HIGHS_SOURCE_DIR}/extern)
+ 
+     if (BUILD_CXX)
+         configure_file(${HIGHS_SOURCE_DIR}/check/HCheckConfig.h.in ${HIGHS_BINARY_DIR}/HCheckConfig.h)
+         target_link_libraries(unit_tests_extra highs)
+     endif()
+ 
+-    add_test(NAME unit-test-extra-build
+-          COMMAND ${CMAKE_COMMAND}
+-                  --build ${HIGHS_BINARY_DIR}
+-                  --target unit_tests_extra
+-                  #  --config ${CMAKE_BUILD_TYPE}
+-          )
+-
+-    # Avoid that several build jobs try to concurretly build.
+-    set_tests_properties(unit-test-extra-build
+-                        PROPERTIES
+-                        RESOURCE_LOCK unittestbin)
+-
+-    # create a binary running all the tests in the executable
+-    add_test(NAME unit_tests_extra COMMAND unit_tests_extra --success)
+-    set_tests_properties(unit_tests_extra
+-                        PROPERTIES
+-                        DEPENDS unit-test-extra-build)
+-    set_tests_properties(unit_tests_extra PROPERTIES TIMEOUT 10000) 
++    catch_discover_tests(unit_tests_extra)
+ 
+     if (CUPDLP_GPU)
+         set_target_properties(unit_tests_extra PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+--- a/check/TestMain.cpp
++++ b/check/TestMain.cpp
+@@ -2,5 +2,3 @@
+ // generate a main method for the tests. Define tests in a separate cpp file
+ // with only the include below. Do not define CATCH_CONFIG_MAIN anywhere else.
+ // See correct-print-options in TestSetup.cpp.
+-#define CATCH_CONFIG_MAIN
+-#include "catch.hpp"
+--- a/check/TestHighsHash.cpp
++++ b/check/TestHighsHash.cpp
+@@ -1,4 +1,5 @@
+ #include <numeric>
++#include <algorithm>
+ 
+ #include "HCheckConfig.h"
+ #include "catch.hpp"

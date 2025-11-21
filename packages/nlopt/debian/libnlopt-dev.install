@@ -1,0 +1,5 @@
+usr/include
+usr/lib/libnlopt.so
+usr/lib/libnlopt.a
+usr/lib/pkgconfig/nlopt.pc
+usr/share/man/man3/*

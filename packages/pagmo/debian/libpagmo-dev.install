@@ -1,0 +1,3 @@
+usr/lib/*/libpagmo*.so
+usr/lib/*/cmake/pagmo/*.cmake
+usr/include/pagmo/

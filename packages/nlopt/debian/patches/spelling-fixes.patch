@@ -1,0 +1,31 @@
+Descriptions: spelling fixes to make lintian happy
+Author: Sergey B Kirpichev
+Forwarded: no
+
+---
+ swig/nlopt-python.cpp |    2 +-
+ swig/numpy.i          |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+--- a/swig/nlopt-python.cpp
++++ b/swig/nlopt-python.cpp
+@@ -4909,7 +4909,7 @@
+     if (PyInstance_Check(py_obj)) return "instance"    ;
+ #endif
+ 
+-    return "unkown type";
++    return "unknown type";
+   }
+ 
+   /* Given a NumPy typecode, return a string describing the type.
+--- a/swig/numpy.i
++++ b/swig/numpy.i
+@@ -89,7 +89,7 @@
+     if (PyInstance_Check(py_obj)) return "instance"    ;
+ %#endif
+ 
+-    return "unkown type";
++    return "unknown type";
+   }
+ 
+   /* Given a NumPy typecode, return a string describing the type.

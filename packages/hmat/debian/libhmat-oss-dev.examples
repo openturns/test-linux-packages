@@ -1,0 +1,3 @@
+debian/README.test
+debian/tests/runExamples
+examples/*.c

@@ -1,0 +1,4 @@
+version=3
+opts=dversionmangle=s/\+dfsg$// \
+    http://ab-initio.mit.edu/wiki/index.php/NLopt .*/nlopt-(.*)\.tar\.gz \
+    debian debian/orig-tar.sh

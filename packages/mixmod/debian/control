@@ -1,0 +1,41 @@
+Source: mixmod
+Section: science
+Priority: optional
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders: Julien Schueller <schueller@phimeca.com>,
+           Denis Barbier <barbier@debian.org>,
+           Pierre Gruet <pgt@debian.org>
+Build-Depends: debhelper-compat (= 12),
+               cmake,
+               libeigen3-dev
+Standards-Version: 4.6.0
+Homepage: https://github.com/mixmod/mixmod
+Vcs-Browser: https://salsa.debian.org/science-team/mixmod
+Vcs-Git: https://salsa.debian.org/science-team/mixmod.git
+Rules-Requires-Root: no
+
+Package: libmixmod
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: hierarchical matrix C/C++ library (shared library)
+ This library allows one to compute hierarchical matrices, which are tools from
+ numerical mathematics used to approximate non-sparse matrices.
+ .
+ The implementation uses lower-upper (LU) decompositions.
+ .
+ This package contains the shared library.
+
+Package: libmixmod-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends},
+         libmixmod (= ${binary:Version}),
+         libeigen3-dev
+Description: hierarchical matrix C/C++ library (development files)
+ This library allows one to compute hierarchical matrices, which are tools from
+ numerical mathematics used to approximate non-sparse matrices.
+ .
+ The implementation uses lower-upper (LU) decompositions.
+ .
+ This package contains the development files.

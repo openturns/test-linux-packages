@@ -1,0 +1,27 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 71fd856..62a339d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -198,8 +198,10 @@ if (NOT MKL_FOUND)
+         endif()
+     endif()
+     if(NOT is_debian_openblas)
+-        find_package(BLAS REQUIRED)
+-        find_package(LAPACKE)
++        set (BLAS_FOUND TRUE)
++        set (BLAS_LIBRARIES /usr/lib64/libblas.so)
++	set(LAPACKE_LIBRARIES /usr/lib64/liblapack.so /usr/lib64/liblapacke.so)
++	set(LAPACKE_FOUND TRUE)
+         if(NOT LAPACKE_FOUND)
+             find_package(PkgConfig)
+             pkg_check_modules (LAPACKE lapacke)
+@@ -238,7 +240,8 @@ if ((NOT MKL_CBLAS_FOUND) AND (NOT is_debian_openblas))
+             message(FATAL_ERROR "cblas.h not found")
+         endif(CBLAS_INCLUDE_DIR)
+     else (CHECK_FUNCTION_EXISTS_CBLAS_DGEMM)
+-        find_package(CBLAS REQUIRED)
++	    set(CBLAS_FOUND TRUE)
++	    set(CBLAS_LIBRARIES /usr/lib64/libcblas.so)
+     endif()
+ endif()
+ 

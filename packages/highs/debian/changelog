@@ -1,0 +1,35 @@
+highs (1.12.0-1) unstable; urgency=medium
+
+  * New upstream version 1.12.0
+
+ -- Shengqi Chen <harry@debian.org>  Wed, 29 Oct 2025 23:34:32 +0800
+
+highs (1.11.0-1) unstable; urgency=medium
+
+  * New upstream version 1.11.0
+
+ -- Shengqi Chen <harry@debian.org>  Wed, 26 Mar 2025 23:34:32 +0800
+
+highs (1.10.0+ds-1) unstable; urgency=medium
+
+  * New upstream version 1.10.0+ds.
+  * d/patches: refresh.
+  * d/copyright: remove outdated paragraph.
+  * d/rules: update FULLVERSION to 1.10.0
+
+ -- Shengqi Chen <harry@debian.org>  Wed, 26 Mar 2025 22:34:32 +0800
+
+highs (1.9.0+ds-2) unstable; urgency=medium
+
+  * d/rules: do not run ctest in dh_auto_test except on amd64 CPUs since some
+    tests require exact match of FP numbers.
+
+ -- Shengqi Chen <harry@debian.org>  Tue, 18 Mar 2025 18:03:23 +0800
+
+highs (1.9.0+ds-1) unstable; urgency=medium
+
+  * Initial packaging for highs (Closes: #1092460).
+  * New upstream version 1.9.0+ds.
+    + build with Python binding python3-highspy.
+
+ -- Shengqi Chen <harry@debian.org>  Mon, 17 Mar 2025 00:14:45 +0800

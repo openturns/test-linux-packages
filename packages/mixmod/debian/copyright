@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: mixmod
+Upstream-Contact: Jerome Robert <jeromerobert@users.sf.net>
+Source: https://github.com/mixmod/mixmod
+
+Files: *
+Copyright: MIXMOD Team - 2001-2016
+License: GPL-2+

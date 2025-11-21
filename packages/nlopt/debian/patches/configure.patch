@@ -1,0 +1,19 @@
+Description: update configure script
+Author: Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>
+Forwarded: no
+
+---
+ configure.ac |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/configure.ac
++++ b/configure.ac
+@@ -408,7 +408,7 @@
+ 
+ dnl -----------------------------------------------------------------------
+ 
+-AC_CONFIG_FILES([
++AC_OUTPUT([
+    Makefile
+    nlopt.pc
+    api/Makefile

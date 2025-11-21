@@ -1,0 +1,43 @@
+Source: pagmo
+Section: science
+Priority: optional
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders: Julien Schueller <schueller@phimeca.com>
+Build-Depends: debhelper-compat (= 12),
+               cmake,
+               libeigen3-dev,
+               libboost-serialization-dev,
+               libtbb-dev
+Standards-Version: 4.6.0
+Homepage: https://github.com/esa/pagmo2
+Vcs-Browser: https://salsa.debian.org/science-team/pagmo
+Vcs-Git: https://salsa.debian.org/science-team/pagmo.git
+Rules-Requires-Root: no
+
+Package: libpagmo9
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Multi-Arch: same
+Description: library for massively parallel optimisation (shared library)
+ pagmo is a C++ scientific library built around the idea of providing an
+ unified interface to optimization algorithms and to optimization
+ problems and to make their deployment in massively parallel environments easy.
+ .
+ This package contains the shared library.
+
+Package: libpagmo-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends},
+         libpagmo9 (= ${binary:Version}),
+         libeigen3-dev,
+         libboost-serialization-dev,
+         libtbb-dev
+Description: library for massively parallel optimisation (development files)
+ pagmo is a C++ scientific library built around the idea of providing an
+ unified interface to optimization algorithms and to optimization
+ problems and to make their deployment in massively parallel environments easy.
+ .
+ This package contains the headers and the static library.

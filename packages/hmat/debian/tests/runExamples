@@ -1,0 +1,46 @@
+#!/bin/bash
+set -e
+
+pkg=libhmat-oss-dev
+
+export LC_ALL=C.UTF-8
+if [ "${AUTOPKGTEST_TMP}" = "" ] ; then
+  AUTOPKGTEST_TMP=$(mktemp -d /tmp/${pkg}-test.XXXXXX)
+  # Double quote below to expand the temporary directory variable now versus
+  # later is on purpose.
+  # shellcheck disable=SC2064
+  trap "rm -rf ${AUTOPKGTEST_TMP}" 0 INT QUIT ABRT PIPE TERM
+fi
+
+cp -a /usr/share/doc/${pkg}/examples "${AUTOPKGTEST_TMP}"
+
+# We are going to run the C examples that are provided with the package.
+
+cd "${AUTOPKGTEST_TMP}/examples"
+gcc -I/usr/include/hmat -Wall -O3 -o c-cholesky c-cholesky.c -lhmat -lm
+./c-cholesky 10 D
+if [ $? -eq 0 ]; then
+    echo "Test c-cholesky PASSED"
+fi
+echo ""
+
+gcc -I/usr/include/hmat -Wall -O3 -o c-cylinder c-cylinder.c -lhmat -lm
+./c-cylinder 100 C
+if [ $? -eq 0 ]; then
+    echo "Test c-cylinder PASSED"
+fi
+echo ""
+
+gcc -I/usr/include/hmat -Wall -O3 -o c-simple-cylinder c-simple-cylinder.c -lhmat -lm
+./c-simple-cylinder 25 Z
+if [ $? -eq 0 ]; then
+    echo "Test c-simple-cylinder PASSED"
+fi
+echo ""
+
+gcc -I/usr/include/hmat -Wall -O3 -o c-simple-kriging c-simple-kriging.c -lhmat -lm
+./c-simple-kriging points.txt S
+if [ $? -eq 0 ]; then
+    echo "Test c-simple-kriging PASSED"
+fi
+echo ""

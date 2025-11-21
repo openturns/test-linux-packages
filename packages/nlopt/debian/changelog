@@ -1,0 +1,120 @@
+nlopt (2.4.2+dfsg-1~bpo70+1) wheezy-backports; urgency=low
+
+  * Rebuild for wheezy-backports.
+
+ -- Sandro Tosi <morph@debian.org>  Tue, 28 Jul 2015 04:41:18 -0400
+
+nlopt (2.4.2+dfsg-1) unstable; urgency=low
+
+  * Install Octave files into private directories (Closes: #734044,
+    thanks to Rafael Laboissiere)
+  * Fix *.oct path in override_dh_shlibdeps
+  * Call libtoolize with --force to update libtool.m4 (thanks
+    to Matthias Klose)
+  * Imported Upstream version 2.4.2+dfsg
+  * Migrate to guile-2.0 (Closes: #746009)
+  * Removed obsoleted patch
+
+ -- Sergey B Kirpichev <skirpichev@gmail.com>  Tue, 20 May 2014 23:27:49 +0400
+
+nlopt (2.4.1+dfsg-1) unstable; urgency=low
+
+  * New upstream version (Closes: #728556)
+  * Bump up Standards-Version (to 3.9.5)
+  * Change Section to libs for libnlopt-guile0
+
+ -- Sergey B Kirpichev <skirpichev@gmail.com>  Tue, 03 Dec 2013 18:19:26 +0400
+
+nlopt (2.4+dfsg-1) unstable; urgency=low
+
+  * New upstream version
+  * Fix lintian error: vcs-field-not-canonical
+  * Fix permissions on debian/orig-tar.sh
+  * Remove patches, applied by upstream
+  * Refresh patches for the new upstream release
+  * Update debian/libnlopt0.symbols
+  * Change octave-nlopt priority to optional (See: #706761)
+  * Override lintian error(X) shlib-calls-exit for libnlopt0
+
+ -- Sergey B Kirpichev <skirpichev@gmail.com>  Sat, 16 Nov 2013 15:27:46 +0400
+
+nlopt (2.3+dfsg-2) unstable; urgency=low
+
+  [ Tim Gardner ]
+  * Add 04-python-includes.patch to detect correct include
+    python paths (Closes: #697638)
+
+  [ Sergey B Kirpichev ]
+  * Removed debian/docs
+  * Drop unused override for octave-nlopt: missing-dependency-on-libc
+  * Bump up Standards-Version (to 3.9.4)
+  * Ignore shared libraries in nlopt-python (fix postinst/rm-has-
+    useless-call-to-ldconfig lintian warning's)
+
+  [ Christophe Trophime ]
+  * Updated patches following DEP3 (python-includes.patch,
+    configure.patch and swig.patch)
+
+  [ Sergey B Kirpichev ]
+  * Added Forwarded: headers for patches 01-03
+  * Set octave-nlopt priority (optional -> extra), according to the policy
+  * Unfuzz patches with "quilt refresh -pab --no-index
+    --no-timestamps --diffstat"
+  * Renamed patches (foo_bar.patch -> foo-bar.patch, git-format-patch's
+    default naming scheme)
+  * Added missing Forwarded: headers for debian/patches/*
+  * Point to related bug for python-includes.patch
+  * Drop unused override for libnlopt-guile0
+  * Fix FTBFS dh_auto_test: error: unable to chdir to
+    debian/build (Closes: #718054)
+
+ -- Sergey B Kirpichev <skirpichev@gmail.com>  Wed, 16 Oct 2013 09:40:44 +0200
+
+nlopt (2.3+dfsg-1) unstable; urgency=low
+
+  [ Christophe Trophime ]
+  * fix lintian error
+  * fix override disparity
+
+  [ Sergey B Kirpichev ]
+  * New upstream version (Closes: #682273)
+  * Adopt machine-readable debian/copyright file format
+  * Add symbols control file for libnlopt.so
+  * Provide /usr/share/doc in libnlopt0 package, make symlinks for
+    others
+  * Simplify debian/rules
+  * Reformat debian/control, drop trailing spaces
+  * Fix some short/long descriptions
+  * Move manpages to libnlopt-dev, add nlopt.pc (Closes: #695659)
+  * Drop unused override (revert back "fix lintian error")
+  * Add shlibs file for libnlopt0
+  * Fix Depends
+  * Fix override disparities: change priority to optional and revert
+    back Section's for source package and libnlopt0 (revert back "fix
+    override disparity")
+  * Cleanup debian/README.source
+  * Update debian/libnlopt0.symbols for new release
+  * Drop get-orig-source target, repackage upstream tarball with uscan
+
+ -- Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>  Wed, 12 Dec 2012 13:30:53 +0100
+
+nlopt (2.2.4+dfsg-2) unstable; urgency=low
+
+  [Sergey B Kirpichev]
+  * Install libnlopt_guile.so (Closes: #679619)
+  * Add multiarch support
+
+  [ Rafael Laboissiere ]
+  * debian/rules:
+      - Install the .oct file in the appropriate directory (Closes: #679617)
+
+  * Add Sergey B Kirpichev <skirpichev@gmail.com> to Uploaders
+
+ -- Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>  Wed, 27 Jun 2012 12:05:11 +0200
+
+nlopt (2.2.4+dfsg-1) unstable; urgency=low
+
+  * Initial release (Closes: #610623)
+
+ -- Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>  Tue, 07 Jun 2011 23:42:16 +0200
+

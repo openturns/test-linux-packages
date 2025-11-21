@@ -1,0 +1,101 @@
+#!/usr/bin/make -f
+
+BUILDDIR = $(CURDIR)/debian/build
+
+PYVERS := $(shell pyversions -vr debian/control)
+
+# The directories below are versioned.  We only support the packages for the
+# stable version of Octave
+#mpath = $(shell octave-config -p LOCALFCNFILEDIR)/nlopt
+#bpath = $(shell octave-config -p LOCALOCTFILEDIR)/nlopt
+
+%:
+	dh $@  --buildsystem=autoconf --builddirectory=$(BUILDDIR) --with python2
+
+override_dh_auto_reconf:
+	[ -e bin/scripts ] || mkdir -p bin/scripts
+	cp -f /usr/share/misc/config.guess /usr/share/misc/config.sub bin/scripts
+	libtoolize --force --automake
+	aclocal -Im4
+	autoreconf -i
+	automake
+
+override_dh_auto_configure: override_dh_auto_reconf
+	for v in $(PYVERS); do \
+	   dh_auto_configure --builddirectory=$(BUILDDIR)$$v \
+	        -- $(extra_flags) \
+		--prefix=/usr \
+		--srcdir=$(CURDIR) \
+		--enable-shared \
+		--without-guile \
+		--without-octave \
+		PYTHON=/usr/bin/python$$v; \
+	done
+
+# 		OCT_INSTALL_DIR=$(bpath) M_INSTALL_DIR=$(mpath) \
+# 		GUILE=guile GUILE_CONFIG=guile-config; \
+
+override_dh_auto_build:
+	for v in $(PYVERS); do \
+	   dh_auto_build --builddirectory=$(BUILDDIR)$$v; \
+	done
+
+override_dh_clean:
+	dh_clean --exclude='*.orig'
+	for v in $(PYVERS); do \
+	   rm -rf $(BUILDDIR)$$v; \
+	done
+
+override_dh_auto_build:
+	# to prevent bug in install due to build-%/config.status being deleted after build target is done
+	mkdir -p $(CURDIR)/debian/tmp
+
+	for v in $(PYVERS); do \
+	   dh_auto_build --builddirectory=$(BUILDDIR)$$v; \
+	done
+
+override_dh_strip:
+	dh_strip
+# 	find debian/octave-nlopt/usr/lib -name *.oct | \
+# 		xargs strip --strip-unneeded --remove-section=.comment
+
+override_dh_makeshlibs:
+	dh_makeshlibs $(shell for v in $(PYVERS); do printf -- "-X/usr/lib/python$$v/dist-packages "; done)
+
+override_dh_shlibdeps:
+	dh_shlibdeps -- \
+		debian/libnlopt0/usr/lib/*/libnlopt.so.* \
+		-Tdebian/libnlopt0.substvars
+# 	dh_shlibdeps -- \
+# 		debian/libnlopt-guile0/usr/lib/*/libnlopt_guile.so.* \
+# 		-Tdebian/libnlopt-guile0.substvars
+# 	dh_shlibdeps -- \
+# 		debian/octave-nlopt/usr/lib/*/octave/site/oct/*/nlopt/*.oct \
+# 		-Tdebian/octave-nlopt.substvars
+	dh_shlibdeps -- \
+		debian/python-nlopt/usr/lib/python*/dist-packages/*.so* \
+		-Tdebian/python-nlopt.substvars
+
+override_dh_auto_install:
+	for v in $(PYVERS); do \
+	  dh_auto_install --builddirectory=$(BUILDDIR)$$v; \
+	done
+
+	dh_numpy
+	find debian/tmp/usr/lib/python* \
+		-name '*.pyc' -o -name '*.pyo' \
+		-o -name '*.la' -o -name '*.a' | xargs rm
+
+override_dh_link:
+#libnlopt-guile0 octave-nlopt
+	for package in libnlopt-dev python-nlopt; do \
+		rm -rf debian/$$package/usr/share/doc/$$package; \
+	done
+	dh_link
+
+
+override_dh_auto_test:
+	for v in $(PYVERS); do \
+	   dh_auto_test --builddirectory=$(BUILDDIR)$$v \
+	        -- $(extra_flags); \
+	done

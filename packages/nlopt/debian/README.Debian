@@ -1,0 +1,8 @@
+nlopt for Debian
+----------------
+
+initial build for squeeze
+see http://ab-initio.mit.edu/wiki/index.php/NLopt_manual
+for some examples 
+
+ -- Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>  Mon, 03 Jan 2011 14:26:50 +0100
