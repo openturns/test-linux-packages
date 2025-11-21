@@ -75,7 +75,7 @@ rm -f "$pkgname"_$debver*
 cp Cuba-${pkgver}.tar.gz "$pkgname"_$debver.orig.tar.gz
 cd /tmp/Cuba-$pkgver
 
-cp -r ~/projects/openturns/cuba-pkg/debian .  
+cp -r ~/projects/openturns/test-linux-packages/packages/cuba/debian .  
 
 # build source package
 echo "-- Creating source package "$pkgname"_$debver-$rel"
@@ -83,9 +83,9 @@ debuild -us -uc -S || echo "failed"
 
 # rpm files
 echo "-- Copying files to $obs"
-cp -v ~/projects/openturns/cuba-pkg/$pkgname.spec /tmp/Cuba-$pkgver.tar.gz $obs
-cp -v ~/projects/openturns/cuba-pkg/*.patch $obs
-cp -v ~/projects/openturns/cuba-pkg/$pkgname-rpmlintrc $obs
+cp -v ~/projects/openturns/test-linux-packages/packages/cuba/$pkgname.spec /tmp/Cuba-$pkgver.tar.gz $obs
+cp -v ~/projects/openturns/test-linux-packages/packages/cuba/*.patch $obs
+cp -v ~/projects/openturns/test-linux-packages/packages/cuba/$pkgname-rpmlintrc $obs
 cp -v /tmp/"$pkgname"_$debver.orig.tar.gz /tmp/"$pkgname"_$debver-$rel.dsc /tmp/"$pkgname"_$debver-$rel.debian.tar.xz $obs
 
 
