@@ -24,7 +24,7 @@ index 0000000..06d1d7e
 +project (cuba C)
 +
 +option (BUILD_SHARED_LIBS "shared/static" ON)
-+option (ENABLE_FORK "sampling parallelization using fork syscall" ON)
++option (ENABLE_FORK "sampling parallelization using fork syscall" OFF)
 +
 +include (GNUInstallDirs)
 +

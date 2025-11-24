@@ -84,7 +84,7 @@ LD_LIBRARY_PATH=%{buildroot}%{_libdir} PYTHONPATH=%{buildroot}%{python_sitearch}
 %{_includedir}/%{name}/*
 %{_libdir}/*.so
 %{_libdir}/cmake/
-%{_libdir}/pkgconfig/
+%{_libdir}/pkgconfig/agrum.pc
 
 %files -n python3-%{name}
 %defattr(-,root,root,-)

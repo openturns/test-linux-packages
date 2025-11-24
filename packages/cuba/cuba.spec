@@ -29,7 +29,7 @@ A library for multidimensional numerical integration (development files)
 %patch -P2 -p1
 
 %build
-%cmake -DHAVE_FORK=0 
+%cmake
 %cmake_build
 
 %install

@@ -15,5 +15,4 @@ override_dh_auto_configure:
             -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo \
             -DCMAKE_INSTALL_PREFIX:PATH=/usr \
             -DCMAKE_INSTALL_LIBDIR:PATH="/usr/lib/$(DEB_HOST_MULTIARCH)" \
-            -DHAVE_FORK=0 \
             -DINSTALL_DESTDIR:PATH=$(CURDIR)/debian/tmp
