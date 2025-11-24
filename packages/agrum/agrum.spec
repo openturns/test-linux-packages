@@ -9,7 +9,7 @@ Group:          System Environment/Libraries
 License:        LGPLv3+
 URL:            http://agrum.gitlab.io/
 Source0:        https://gitlab.com/agrumery/aGrUM/-/archive/%{version}/aGrUM-%{version}.tar.bz2
-BuildRequires:  gcc-c++, cmake
+BuildRequires:  gcc-c++, cmake, swig
 BuildRequires:  python3-devel
 BuildRequires:  python3-scipy
 BuildRequires:  python3-six

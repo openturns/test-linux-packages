@@ -82,8 +82,8 @@ debuild -us -uc -S || echo "failed"
 
 # rpm files
 echo "-- Copying files to $obs"
-cp -v ~/projects/openturns/agrum-pkg/$pkgname.spec /tmp/aGrUM-$pkgver.tar.bz2 $obs
-cp -v ~/projects/openturns/agrum-pkg/agrum-rpmlintrc $obs
+cp -v ~/projects/openturns/test-linux-packages/packages/agrum/$pkgname.spec /tmp/aGrUM-$pkgver.tar.bz2 $obs
+cp -v ~/projects/openturns/test-linux-packages/packages/agrum/agrum-rpmlintrc $obs
 cp -v /tmp/"$pkgname"_$debver.orig.tar.bz2 /tmp/"$pkgname"_$debver-$rel.dsc /tmp/"$pkgname"_$debver-$rel.debian.tar.xz $obs
 
 
