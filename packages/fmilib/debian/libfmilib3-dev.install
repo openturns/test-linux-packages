@@ -1,0 +1,3 @@
+usr/include/*
+#usr/lib/*/libfmilib_shared.so
+usr/share/doc/FMILibrary/
